@@ -1,0 +1,26 @@
+<%- include('../partials/header.ejs') %>
+
+<body>
+    <div>
+        <form action="/posts/<%= post._id%>/edit?_method=PATCH" method="POST">
+            <div>
+                <label for="title" class="form-label">Title: </label>
+                <input type="text" class="form-control" name="title" id="title" placeholder="Content" value="<%= post.title %>" required disabled>
+            </div>
+            <div>
+                <label for="content" class="form-label">content: </label>
+                <input type="text" class="form-control" name="content" id="content" placeholder="Content" value="<%= post.content %>" required>
+            </div>
+            <div>
+                <label for="comments" class="form-label">Comments: </label>
+                <input type="text" class="form-control" name="comments" id="comments" placeholder="comments" value="<%= post.comments %>" required>
+            </div>
+            <div>
+                <label for="tag" class="form-label">Tag: </label>
+                <input type="text" class="form-control" name="tag" id="tag" placeholder="Tag" value="<%= post.tag %>"> 
+            </div>
+            <button type="submit">Update Post</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
 const userSchema = new mongoose.Schema({
-    gender:{
+    
+    email: {
         required: true,
         type: String,
         trim: true,
     },
-    size: {
+    
+    city: {
         type: String,
         required: true,
         trim: true,
@@ -17,11 +19,6 @@ const userSchema = new mongoose.Schema({
         required: true,
         trim: true,
     },
-    address: {
-        type: String,
-        required: true,
-        trim: true,
-    }
 });
 
 userSchema.plugin(passportLocalMongoose);

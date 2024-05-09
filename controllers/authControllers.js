@@ -4,9 +4,9 @@ const User = require("../models/User");
 const registerUser = async (req, res) => {
   try {
     const result = await userSchema.validateAsync(req.body);
-    let { gender, size, age, address, username, password } = req.body;
-    let newuser = new User({ gender, size, age, address, username });
-    let nayabnada = await User.register(newuser, password);
+    let { age, city, username, password, email } = req.body;
+    let newuser = new User({ age, city, email, username});
+    let db_user = await User.register(newuser, password);
     req.login(newuser, function (err) {
       if (err) {
         return next(err);
@@ -28,6 +28,6 @@ const loginGet = async (req, res) => {
 };
 
 const loginUser = async (req, res) => {
-  res.redirect("/shirts");
+  res.redirect("/posts");
 };
 module.exports = { registerUser, registerGet, loginGet, loginUser };

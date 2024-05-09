@@ -1,0 +1,27 @@
+<%- include('../partials/header.ejs') %>
+
+<body>
+    <div>
+        <form action="/posts/new" method="POST">
+            <div>
+                <label for="title" class="form-label">Title: </label>
+                <input type="text" class="form-control" name="title" id="title" placeholder="Title" required>
+            </div>
+            <div>
+                <label for="content" class="form-label">Content: </label>
+                <input type="text" class="form-control" name="content" id="content" placeholder="Content" required>
+            </div>
+            <div>
+                <label for="comments" class="form-label">Comments: </label>
+                <input type="text" class="form-control" name="comments" id="comments" placeholder="Comment" required>
+            </div>
+            <div>
+                <label for="tag" class="form-label">Tag: </label>
+                <input type="text" class="form-control" name="tag" id="tag" placeholder="tag">
+            </div>
+            
+            <button type="submit">Add Post</button>
+        </form>
+    </div>
+</body>
+</html>

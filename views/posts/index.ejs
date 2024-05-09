@@ -1,0 +1,31 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<div class="row mt-5">
+
+    <% for(let item of posts){ %>
+
+        <div class="col-lg-4 product-card">
+            <div class="card text-center shadow mt-3 mx-auto" style="width: 18rem;">
+                <div class="card-body">
+                  <h1 class="card-title">
+                    <span>
+                      <%= item.title %>
+                    </span> 
+                </h1>
+                  <p class="card-text"> Title: <%= item.title %> </p>
+                  <p class="card-text"> Pattern:<%= item.content %> </p>
+                  <p class="card-text">Comments: <%= item.comments%> </p>
+                  <p class="card-text"> Tag: <%= item.tag %> </p>
+                  <a href="/posts/<%= item._id %>" class="btn btn-primary">View Post</a>
+                  <a href="/posts/<%= item._id %>/edit" class="btn btn-primary">Edit Post</a>
+                  <form action = "/posts/<%= item._id %>/delete?_method=DELETE" method="POST">
+                    <button class = "btn btn-primary">Delete Post</button>
+                  </form>
+                  </div>
+            </div>
+        </div>
+        
+    <% } %>
+    
+</div>
