@@ -8,7 +8,7 @@ const session = require('express-session');
 const methodOverride = require('method-override')
 const LocalStrategy = require('passport-local');
 const User = require('./models/User');
-const dbConnect = require('./config/dbConnect');
+const dbConnect = require('./helpers/dbConnect');
 if(dbConnect()) {
     console.log("Database connected");
 } else {

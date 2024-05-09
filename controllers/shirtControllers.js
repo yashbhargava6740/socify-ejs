@@ -1,21 +1,28 @@
+const { shirtSchema } = require("../helpers/validationSchemas");
 const Shirt = require("../models/Shirt");
-
 const createShirt = async (req, res) => {
-  const { fabric, size, pattern, shirtColor, price } = req.body;
-  if (!fabric || !size || !pattern || !shirtColor || !price)
-    throw new Error("Incomplete Data");
-  const shirt = await Shirt.create({
-    fabric,
-    size,
-    pattern,
-    shirtColor,
-    price,
-  });
+  try {
+    const result = await shirtSchema.validateAsync(req.body);
+    const { fabric, size, pattern, shirtColor, price } = req.body;
+    if (!fabric || !size || !pattern || !shirtColor || !price)
+      throw new Error("Incomplete Data");
+    const shirt = await Shirt.create({
+      fabric,
+      size,
+      pattern,
+      shirtColor,
+      price,
+    });
+    if (!shirt) throw new Error("Database Error!");
+    else {
+      res.redirect("/shirts");
+    }
+  } catch (error) {
+    res.status(422).send({
+      message: error.message,
+    });
+  };
   
-  if (!shirt) throw new Error("Database Error!");
-  else {
-    res.redirect("/shirts");
-  }
 };
 
 const getCreateShirt = async (req, res) => {
@@ -84,25 +91,25 @@ const deleteShirt = async (req, res) => {
 
 const getShirt = async (req, res) => {
   const _id = req.params.id;
-  if(!_id) {
+  if (!_id) {
     throw new Error("Id not provided");
     process.exit(0);
   }
   try {
-    const shirt = await Shirt.findById({_id});
-    if(!shirt) {
+    const shirt = await Shirt.findById({ _id });
+    if (!shirt) {
       res.status(501).send({
         message: "Requested Resource not found",
       });
       process.exit(0);
     } else {
-      res.render("shirts/single_shirt", {shirt});
+      res.render("shirts/single_shirt", { shirt });
     }
-  } catch(error) {
+  } catch (error) {
     res.status(500).send({
-      message:error.message,
+      message: error.message,
     });
-  };
+  }
 };
 module.exports = {
   createShirt,
