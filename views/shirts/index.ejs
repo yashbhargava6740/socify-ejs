@@ -1,0 +1,31 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar') %>
+
+<div class="row mt-5">
+
+    <% for(let item of shirts){ %>
+
+        <div class="col-lg-4 product-card">
+            <div class="card text-center shadow mt-3 mx-auto" style="width: 18rem;">
+                <div class="card-body">
+                  <h1 class="card-title">
+                    <span>
+                      <%= item.fabric %>
+                    </span> 
+                </h1>
+                  <p class="card-text"> Size: <%= item.size %> </p>
+                  <p class="card-text"> Pattern:<%= item.pattern %> </p>
+                  <p class="card-text">Colour: <%= item.shirtColor%> </p>
+                  <p class="card-text"> Price: <%= item.price %> </p>
+                  <a href="/shirts/<%= item._id %>" class="btn btn-primary">View Shirt</a>
+                  <a href="/shirts/<%= item._id %>/edit" class="btn btn-primary">Edit Shirt</a>
+                  <form action = "/shirts/<%= item._id %>/delete?_method=DELETE" method="POST">
+                    <button class = "btn btn-primary">Delete Shirt</button>
+                  </form>
+                  </div>
+            </div>
+        </div>
+        
+    <% } %>
+    
+</div>

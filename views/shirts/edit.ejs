@@ -1,0 +1,30 @@
+<%- include('../partials/header.ejs') %>
+
+<body>
+    <div>
+        <form action="/shirts/<%= shirt._id%>/edit?_method=PATCH" method="POST">
+            <div>
+                <label for="fabric" class="form-label">Fabric: </label>
+                <input type="text" class="form-control" name="fabric" id="fabric" placeholder="Fabric" value="<%= shirt.fabric %>" required >
+            </div>
+            <div>
+                <label for="size" class="form-label">Size: </label>
+                <input type="number" class="form-control" name="size" id="size" placeholder="Size" value="<%= shirt.size %>" required>
+            </div>
+            <div>
+                <label for="pattern" class="form-label">Pattern: </label>
+                <input type="text" class="form-control" name="pattern" id="pattern" placeholder="Pattern" value="<%= shirt.pattern %>" required>
+            </div>
+            <div>
+                <label for="shirtColor" class="form-label">Colour: </label>
+                <input type="text" class="form-control" name="shirtColor" id="shirtColor" placeholder="Shirt Colour" value="<%= shirt.shirtColor %>" required disabled> 
+            </div>
+            <div>
+                <label for="price" class="form-label">Price: </label>
+                <input type="text" class="form-control" name="price" id="price" placeholder="Price" value="<%= shirt.price %>" required>
+            </div>
+            <button type="submit">Update Shirt</button>
+        </form>
+    </div>
+</body>
+</html>
